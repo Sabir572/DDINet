@@ -5,4 +5,4 @@ Drug-drug interactions (DDIs) can cause unexpected side effects, posing challeng
 
 
 ## Experimental Setup
-Our model was developed using Python 3.7.10, TensorFlow 2.4.1, and Keras 2.4.3, running on Spyder 4.2.5. The setup incorporates functionalities from NumPy 1.19.5, Pandas 1.2.4, Scikit-learn 0.24.2, Scikit-image 0.18.1, and RDKit 2023.03.2. All experiments were conducted with CUDA 11.2 on an NVIDIA Titan Xp GPU with 12 GB memory.
+The model was developed in Python 3.11.14 using TensorFlow 2.20.0 and Keras 3.11.3, within Spyder 6.1.0. The environment also included NumPy 2.3.3, Pandas 2.3.3, Scikit-learn 1.7.2, and RDKit 2025.03.6. All experiments were conducted with CUDA 11.2 on an NVIDIA TITAN Xp GPU with 12 GB of memory.
