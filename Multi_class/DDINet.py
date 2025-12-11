@@ -50,28 +50,28 @@ def load_combined_npy(path, file_name):
 SCENARIOS = {
     'S1': {  # Random split from seen_seen DDI
         'type': 'split',
-        'path': "/drug_project/multi_class/seen_seen DDI/",
+        'path': "/multi_class/seen_seen DDI/",
         'feature_file': "concat_Morgan.npy",
         'label_file': "labels.npy"
     },
     'S2': {  # Seen-unseen
         'type': 'separate',
-        'train_path': "/drug_project/multi_class/seen_unseen train/",
-        'test_path': "/drug_project/multi_class/s2/",
+        'train_path': "/multi_class/seen_unseen train/",
+        'test_path': "/multi_class/s2/",
         'feature_file': "concat_Morgan.npy",
         'label_file': "labels.npy"
     },
     'S3': {  # Another split
         'type': 'separate',
-        'train_path': "/drug_project/multi_class/seen_unseen train/",
-        'test_path': "/drug_project/multi_class/s3/",
+        'train_path': "/multi_class/seen_unseen train/",
+        'test_path': "/multi_class/s3/",
         'feature_file': "concat_Morgan.npy",
         'label_file': "labels.npy"
     },
     'Scaffold': {  # Scaffold splitting
         'type': 'combined',
         'train_path': "/multi_class/scaffold_splitting/",
-        'test_path': "/drug_project/multi_class/scaffold_splitting/",
+        'test_path': "/multi_class/scaffold_splitting/",
         'train_file': "scaffold_train_morgan_fn.npy",
         'test_file': "scaffold_test_morgan_fn.npy"
     }
@@ -111,7 +111,7 @@ def train_and_validate(X_train, y_train_categorical, scenario):
         print(f"Training fold {fold + 1} for {scenario}")
         model = my_model(input_shape=(X_train.shape[1],), num_classes=106)
         param_count = model.count_params()
-        checkpoint_path = f"{scenario}/morgan_{scenario}_{fold + 1}.h5"
+        checkpoint_path = f"/multi_class/{scenario}/morgan_{scenario}_{fold + 1}.h5"
         callbacks = [
             ModelCheckpoint(filepath=checkpoint_path, save_best_only=True, verbose=1),
             EarlyStopping(monitor='val_loss', patience=15)
@@ -252,7 +252,7 @@ for scenario_name, scenario_info in SCENARIOS.items():
 
 #%% Save all results
 df_results = pd.DataFrame(results)
-df_results.to_csv("model_metrics_all_scenarios.csv", index=False)
+df_results.to_csv("/multi_class/model_metrics_all_scenarios.csv", index=False)
 print("\n=== Full Summary Across Scenarios ===")
 print(df_results.round(4).to_string(index=False))
 
